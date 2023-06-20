@@ -1,6 +1,6 @@
 <?php
 define('SITE_NAME', 'pmarket.com');
-define("WEB_TITLE", "3 Studio inc");
+define("WEB_TITLE", "PMarket");
 
 define('APP_ROOT', dirname(dirname(__FILE__)));
 define('URL_ROOT', '/');

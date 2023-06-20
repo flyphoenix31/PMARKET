@@ -73,7 +73,7 @@
     <div class="showChat_inner">
         <div class="d-flex chat-inner-header">
             <a class="back_chatBox">
-                <i class="feather icon-x"></i> Josephin Doe
+                <i class="feather icon-x"></i> <span id="message-box-title">Josephin Doe</span>
             </a>
         </div>
         <div class="main-friend-chat">

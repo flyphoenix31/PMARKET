@@ -14,4 +14,9 @@ class User
 			return $user;
 		return null;
     }
+
+    public static function find($id)
+    {
+        return  DB::get()->fetchRow('Select * from users where id=:id', ['id' => $id]);
+    }
 }

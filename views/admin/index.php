@@ -36,6 +36,7 @@ $_SESSION["username"] = "Admin";
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/widget.css">
+    <script type="text/javascript" src="/bower_components/axios/js/axios.min.js"></script>
 </head>
 
 <body>
@@ -354,6 +355,7 @@ $_SESSION["username"] = "Admin";
     <script src="/assets/js/vertical/vertical-layout.min.js"></script>
     <script type="text/javascript" src="/assets/pages/dashboard/custom-dashboard.min.js"></script>
     <script type="text/javascript" src="/assets/js/script.min.js"></script>
+    <script type="text/javascript" src="/js/common/chatbar.js"></script>
 </body>
 
 </html>
