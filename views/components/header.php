@@ -2,7 +2,7 @@
     <div class="navbar-wrapper">
         <div class="navbar-logo">
             <a href="index.html">
-                <img class="img-fluid" src="/assets/images/logo.png" alt="Theme-Logo" />
+                <img class="img-fluid" src="/public/assets/images/logo.png" alt="Theme-Logo" />
             </a>
             <a class="mobile-menu" id="mobile-collapse" href="#!">
                 <i class="feather icon-menu icon-toggle-right"></i>
@@ -47,7 +47,7 @@
                             <li>
                                 <div class="d-flex">
                                     <div class="flex-shrink-0">
-                                        <img class="img-radius" src="/assets/images/avatar-4.jpg" alt="Generic placeholder image">
+                                        <img class="img-radius" src="/public/assets/images/avatar-4.jpg" alt="Generic placeholder image">
                                     </div>
                                     <div class="flex-grow-1">
                                         <h5 class="notification-user">John Doe</h5>
@@ -59,7 +59,7 @@
                             <li>
                                 <div class="d-flex">
                                     <div class="flex-shrink-0">
-                                        <img class="img-radius" src="/assets/images/avatar-3.jpg" alt="Generic placeholder image">
+                                        <img class="img-radius" src="/public/assets/images/avatar-3.jpg" alt="Generic placeholder image">
                                     </div>
                                     <div class="flex-grow-1">
                                         <h5 class="notification-user">Joseph William</h5>
@@ -71,7 +71,7 @@
                             <li>
                                 <div class="d-flex">
                                     <div class="flex-shrink-0">
-                                        <img class="img-radius" src="/assets/images/avatar-4.jpg" alt="Generic placeholder image">
+                                        <img class="img-radius" src="/public/assets/images/avatar-4.jpg" alt="Generic placeholder image">
                                     </div>
                                     <div class="flex-grow-1">
                                         <h5 class="notification-user">Sara Soudein</h5>
@@ -95,7 +95,7 @@
 
                     <div class="dropdown-primary dropdown">
                         <div class="dropdown-toggle" data-bs-toggle="dropdown">
-                            <img src="/assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+                            <img src="/public/assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
                             <span>
                                 <?php //echo ($_SESSION["username"]) ? $_SESSION["username"] : "John Doe"; ?>
                                 <?php echo (array_key_exists('username', $_SESSION)) ? $_SESSION["username"] : "John Doe"; ?>                               

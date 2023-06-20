@@ -1,6 +1,5 @@
 <?php
 # Initialize the session
-use App\Helpers\View;
 
 $_SESSION["username"] = "Admin";
 
@@ -19,24 +18,24 @@ $_SESSION["username"] = "Admin";
     <meta name="keywords" content="flat ui, admin Admin , Responsive, Landing, Bootstrap, App, Template, Mobile, iOS, Android, apple, creative app">
     <meta name="author" content="colorlib" />
     <!-- Favicon icon -->
-    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/public/assets/images/favicon.ico" type="image/x-icon">
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Quicksand:500,700" rel="stylesheet">
     <!-- Required Fremwork -->
-    <link rel="stylesheet" type="text/css" href="/bower_components/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="/public/bower_components/bootstrap/css/bootstrap.min.css">
     <!-- waves.css -->
-    <link rel="stylesheet" href="/assets/pages/waves/css/waves.min.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/assets/pages/waves/css/waves.min.css" type="text/css" media="all">
     <!-- feather icon -->
-    <link rel="stylesheet" type="text/css" href="/assets/icon/feather/css/feather.css">
+    <link rel="stylesheet" type="text/css" href="/public/assets/icon/feather/css/feather.css">
     <!-- font-awesome-n -->
-    <link rel="stylesheet" type="text/css" href="/assets/css/font-awesome-n.min.css">
+    <link rel="stylesheet" type="text/css" href="/public/assets/css/font-awesome-n.min.css">
     <!-- Chartlist chart css -->
-    <link rel="stylesheet" href="/bower_components/chartist/css/chartist.css" type="text/css" media="all">
+    <link rel="stylesheet" href="/public/bower_components/chartist/css/chartist.css" type="text/css" media="all">
     <!-- Style.css -->
-    <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="/assets/css/widget.css">
-    <script type="text/javascript" src="/bower_components/axios/js/axios.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/public/assets/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/public/assets/css/widget.css">
+    <script type="text/javascript" src="/public/bower_components/axios/js/axios.min.js"></script>
 </head>
 
 <body>
@@ -49,13 +48,13 @@ $_SESSION["username"] = "Admin";
         <div class="pcoded-overlay-box"></div>
         <div class="pcoded-container navbar-wrapper">
             <!-- [ Header ] start -->
-            <?php View::render('components.header'); ?>
-            <?php View::render('components.chat'); ?>
+            <?php require_once '../components/header.php' ?>
+            <?php require_once '../components/chat.php' ?>
            
 
             <div class="pcoded-main-container">
                 <div class="pcoded-wrapper">
-                    <?php View::render('admin.sidebar'); ?>
+                    <?php require_once './sidebar.php' ?>
                     <div class="pcoded-content container">
                         <!-- [ breadcrumb ] start -->
                         <div class="page-header card">
@@ -331,31 +330,31 @@ $_SESSION["username"] = "Admin";
     </div>
     <!-- Warning Section Ends -->
     <!-- Required Jquery -->
-    <script type="text/javascript" src="/bower_components/jquery/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/bower_components/jquery-ui/js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="/bower_components/popper.js/js/popper.min.js"></script>
-    <script type="text/javascript" src="/bower_components/bootstrap/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/public/bower_components/jquery/js/jquery.min.js"></script>
+    <script type="text/javascript" src="/public/bower_components/jquery-ui/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="/public/bower_components/popper.js/js/popper.min.js"></script>
+    <script type="text/javascript" src="/public/bower_components/bootstrap/js/bootstrap.min.js"></script>
     <!-- waves js -->
-    <script src="/assets/pages/waves/js/waves.min.js"></script>
+    <script src="/public/assets/pages/waves/js/waves.min.js"></script>
     <!-- jquery slimscroll js -->
-    <script type="text/javascript" src="/bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
+    <script type="text/javascript" src="/public/bower_components/jquery-slimscroll/js/jquery.slimscroll.js"></script>
     <!-- Float Chart js -->
-    <script src="/assets/pages/chart/float/jquery.flot.js"></script>
-    <script src="/assets/pages/chart/float/jquery.flot.categories.js"></script>
-    <script src="/assets/pages/chart/float/curvedLines.js"></script>
-    <script src="/assets/pages/chart/float/jquery.flot.tooltip.min.js"></script>
+    <script src="/public/assets/pages/chart/float/jquery.flot.js"></script>
+    <script src="/public/assets/pages/chart/float/jquery.flot.categories.js"></script>
+    <script src="/public/assets/pages/chart/float/curvedLines.js"></script>
+    <script src="/public/assets/pages/chart/float/jquery.flot.tooltip.min.js"></script>
     <!-- Chartlist charts -->
-    <script src="/bower_components/chartist/js/chartist.js"></script>
+    <script src="/public/bower_components/chartist/js/chartist.js"></script>
     <!-- amchart js -->
-    <script src="/assets/pages/widget/amchart/amcharts.js"></script>
-    <script src="/assets/pages/widget/amchart/serial.js"></script>
-    <script src="/assets/pages/widget/amchart/light.js"></script>
+    <script src="/public/assets/pages/widget/amchart/amcharts.js"></script>
+    <script src="/public/assets/pages/widget/amchart/serial.js"></script>
+    <script src="/public/assets/pages/widget/amchart/light.js"></script>
     <!-- Custom js -->
-    <script src="/assets/js/pcoded.min.js"></script>
-    <script src="/assets/js/vertical/vertical-layout.min.js"></script>
-    <script type="text/javascript" src="/assets/pages/dashboard/custom-dashboard.min.js"></script>
-    <script type="text/javascript" src="/assets/js/script.min.js"></script>
-    <script type="text/javascript" src="/js/common/chatbar.js"></script>
+    <script src="/public/assets/js/pcoded.min.js"></script>
+    <script src="/public/assets/js/vertical/vertical-layout.min.js"></script>
+    <script type="text/javascript" src="/public/assets/pages/dashboard/custom-dashboard.min.js"></script>
+    <script type="text/javascript" src="/public/assets/js/script.min.js"></script>
+    <script type="text/javascript" src="/public/js/common/chatbar.js"></script>
 </body>
 
 </html>
