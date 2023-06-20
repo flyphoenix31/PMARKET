@@ -115,8 +115,9 @@
         <div class="chat-reply-box">
             <div class="right-icon-control">
                 <div class="input-group input-group-button">
-                    <input type="text" class="form-control" placeholder="Write hear . . ">
-                    <button class="btn btn-primary waves-effect waves-light" type="button">
+                    <input type="hidden" id="selectedChatUserID">
+                    <input type="text" class="form-control" id="chatDraft" placeholder="Write hear . . ">
+                    <button class="btn btn-primary waves-effect waves-light" id="chatSendButton" type="button">
                         <i class="feather icon-message-circle"></i>
                     </button>
                 </div>

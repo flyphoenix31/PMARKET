@@ -12,6 +12,9 @@ $routes->add('logout', new Route(constant('URL_SUBFOLDER') . '/logout', array('c
 
 $routes->add('chat', new Route(constant('URL_SUBFOLDER') . '/chat', array('controller' => 'ChatController', 'method'=>'index', 'middleware' => array(array('class'=>'Auth', 'method'=>'private'))), array(), array(), '', array(), array('POST')));
 $routes->add('chat/messages', new Route(constant('URL_SUBFOLDER') . '/chat/message', array('controller' => 'ChatController', 'method'=>'getMessage', 'middleware' => array(array('class'=>'Auth', 'method'=>'private'))), array(), array(), '', array(), array('GET')));
+$routes->add('chat/messages/new', new Route(constant('URL_SUBFOLDER') . '/chat/message/new', array('controller' => 'ChatController', 'method'=>'sendMessage', 'middleware' => array(array('class'=>'Auth', 'method'=>'private'))), array(), array(), '', array(), array('POST')));
+$routes->add('chat/messages/delete', new Route(constant('URL_SUBFOLDER') . '/chat/message/delete', array('controller' => 'ChatController', 'method'=>'deleteMessage', 'middleware' => array(array('class'=>'Auth', 'method'=>'private'))), array(), array(), '', array(), array('POST')));
+$routes->add('chat/conversation/delete', new Route(constant('URL_SUBFOLDER') . '/chat/conversation/delete', array('controller' => 'ChatController', 'method'=>'deleteConversation', 'middleware' => array(array('class'=>'Auth', 'method'=>'private'))), array(), array(), '', array(), array('POST')));
 $routes->add('chat/lastMessages', new Route(constant('URL_SUBFOLDER') . '/chat/lastMessage', array('controller' => 'ChatController', 'method'=>'getLastMessage', 'middleware' => array(array('class'=>'Auth', 'method'=>'private'))), array(), array(), '', array(), array('GET')));
 
 $routes->add('homepage', new Route(constant('URL_SUBFOLDER') . '/', array('controller' => 'PageController', 'method'=>'indexAction', 'middleware' => array(array('class'=>'Auth', 'method'=>'private'))), array(), array(), '', array(), array('GET')));

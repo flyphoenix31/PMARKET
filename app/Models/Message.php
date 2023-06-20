@@ -25,6 +25,22 @@ class Message
         return $messages;
     }
 
+    public static function save($message)
+    {
+        $id = DB::get()->insert('messages', $message);
+        return DB::get()->fetchRow("Select * from messages where id=:id", ['id' => $id]);
+    }
+
+    public static function delete($id)
+    {
+        DB::get()->delete('messages', ['id' => $id]);
+    }
+
+    public static function deleteConversation($user1, $user2)
+    {
+        DB::get()->delete('messages', "(from_user=:user1 and to_user=:user2) or (from_user=:user2 and to_user=:user1)", ['user1' => $user1, 'user2' => $user2]);
+    }
+
     public static function groupdata($userId)
     {
     }

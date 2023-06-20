@@ -1,8 +1,10 @@
 <?php
 define('SITE_NAME', 'pmarket.com');
 define("WEB_TITLE", "PMarket");
+define('SOCKET_SERVER', 'ws://localhost:10725');
 
 define('APP_ROOT', dirname(dirname(__FILE__)));
+define('PUBLIC_ROOT', dirname(dirname(__FILE__)) . "/public");
 define('URL_ROOT', '/');
 define('URL_SUBFOLDER', '');
 

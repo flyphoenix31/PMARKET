@@ -1,3 +1,34 @@
+var addNewMessageElement = function (message) {
+    let html = '';
+    if (message.from_user == userId) {
+        html = `<div class="d-flex chat-messages">
+            <div class="flex-grow-1 chat-menu-reply">
+                <div class="">
+                    <p class="chat-cont">${message.message}</p>
+                </div>
+                <p class="chat-time">${message.created_at}</p>
+            </div>
+        </div>`;
+    } else {
+        html = `<div class="d-flex chat-messages">
+            <a class="media-left photo-table" href="#!">
+                <div class="flex-shrink-0">
+                    <img class="media-object img-radius img-radius m-t-5" src="/assets/images/avatar-${userId==1?2:1}.jpg" alt="Generic placeholder image">
+                </div>
+            </a>
+            <div class="flex-grow-1 chat-menu-content">
+                <div class="">
+                    <p class="chat-cont">${message.message}</p>
+                </div>
+                <p class="chat-time">${message.created_at}</p>
+            </div>
+        </div>`;
+    }
+    const mainFriendChat = $('.main-friend-chat');
+    mainFriendChat.append(html);
+    mainFriendChat.slimscroll();
+    setTimeout(() => mainFriendChat.slimscroll({ scrollTo: 10000000 }), 100);
+}
 $(document).ready(function () {
     /*chatbar js start*/
     /*chat box scroll*/
@@ -61,6 +92,7 @@ $(document).ready(function () {
             $('.userlist-box').click(function () {
                 console.log($(this));
                 const user_id = $(this).attr('data-id');
+                $("#selectedChatUserID").val(user_id);
                 axios.get('/chat/message', { params: { user_id } }).then(({ data: response }) => {
                     if (response.status != 0) throw ('error');
                     let html = '';
@@ -70,7 +102,7 @@ $(document).ready(function () {
                             html += `<div class="d-flex chat-messages">
                                 <a class="media-left photo-table" href="#!">
                                     <div class="flex-shrink-0">
-                                        <img class="media-object img-radius img-radius m-t-5" src="/assets/images/avatar-2.jpg" alt="Generic placeholder image">
+                                        <img class="media-object img-radius img-radius m-t-5" src="/assets/images/avatar-${userId==1?2:1}.jpg" alt="Generic placeholder image">
                                     </div>
                                 </a>
                                 <div class="flex-grow-1 chat-menu-content">
@@ -147,6 +179,26 @@ $(document).ready(function () {
         }
         $('.p-chat-user').toggle('slide', options, 500);
         $('.showChat').css('display', 'block');
+    });
+    $('#chatSendButton').click(function () {
+        let message = $("#chatDraft").val();
+        let bodyFormData = new FormData();
+        bodyFormData.append('receiver_id', $("#selectedChatUserID").val());
+        bodyFormData.append('message', message);
+        // bodyFormData.append('file')
+        axios.post('/chat/message/new', bodyFormData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        }).then(({ data: response }) => {
+            const { message, status } = response;
+            if (status != 0) throw ('error');
+            $("#chatDraft").val("")
+            sendSocketMessage({ type: 'newMessage', data: message });
+            addNewMessageElement(message);
+        }).catch(err => {
+            console.error(err);
+        })
     });
     // /*chatbar js end*/
 })

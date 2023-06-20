@@ -1,8 +1,7 @@
 <?php
 # Initialize the session
 use App\Helpers\View;
-
-$_SESSION["username"] = "Admin";
+use App\Middleware\Auth;
 
 ?>
 
@@ -40,6 +39,9 @@ $_SESSION["username"] = "Admin";
 </head>
 
 <body>
+    <script>
+        let userId = <?= Auth::get()['id'] ?>;
+    </script>
     <!-- [ Pre-loader ] start -->
     <div class="loader-bg">
         <div class="loader-bar"></div>
@@ -356,6 +358,7 @@ $_SESSION["username"] = "Admin";
     <script type="text/javascript" src="/assets/pages/dashboard/custom-dashboard.min.js"></script>
     <script type="text/javascript" src="/assets/js/script.min.js"></script>
     <script type="text/javascript" src="/js/common/chatbar.js"></script>
+    <script type="text/javascript" src="/js/common/socket.js"></script>
 </body>
 
 </html>

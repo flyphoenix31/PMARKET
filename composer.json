@@ -12,6 +12,7 @@
         "symfony/routing": "^5.4",
         "symfony/http-foundation": "^5.4",
         "simplon/mysql": "^2.2",
-        "ext-pdo": "*"
+        "ext-pdo": "*",
+        "cboden/ratchet": "^0.4.4"
     }
 }
