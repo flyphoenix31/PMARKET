@@ -20,6 +20,10 @@ class Auth
         else
             $_SESSION['auth'] = $user;
     }
+    public static function remove()
+    {
+        unset($_SESSION['auth']);
+    }
     // Homepage action
     public function public($next)
     {

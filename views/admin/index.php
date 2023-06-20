@@ -49,7 +49,7 @@ $_SESSION["username"] = "Admin";
         <div class="pcoded-container navbar-wrapper">
             <!-- [ Header ] start -->
             <?php View::render('components.header'); ?>
-            <?php View::render('components/chat'); ?>
+            <?php View::render('components.chat'); ?>
            
 
             <div class="pcoded-main-container">

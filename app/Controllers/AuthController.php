@@ -37,4 +37,10 @@ class AuthController
         Auth::set($user);
         echo json_encode(array('status' => 0));
     }
+    public function logout(RouteCollection $routes)
+    {
+        Auth::remove();
+        header('Location: ' . '/login');
+        return die();
+    }
 }

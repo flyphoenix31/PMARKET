@@ -128,7 +128,7 @@
                             </a>
                             </li>
                             <li>
-                                <a href="/auth/signin.php">
+                                <a href="/logout">
                                 <i class="feather icon-log-out"></i> Logout
                             </a>
                             </li>
