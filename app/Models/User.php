@@ -15,6 +15,16 @@ class User
 		return null;
     }
 
+    public static function findOne($conds)
+    {
+        $query = 'Select * from users where 1=1';
+        forEach(array_keys($conds) as $key)
+        {
+            $query .= " and ".$key."= :".$key;
+        }
+        return DB::get()->fetchRow($query, $conds);
+    }
+
     public static function find($id)
     {
         return DB::get()->fetchRow('Select * from users where id=:id', ['id' => $id]);

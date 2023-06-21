@@ -41,17 +41,57 @@ $server = IoServer::factory(
                     switch ($message['type'])
                     {
                         case 'init':
-                            $from->userId = $message['userId'];
+                            $this->init($from, $message);
                             break;
                         case 'newMessage':
-                            for ($i = 0; $i < count($this->connections); $i ++) {
-                                if ($this->connections[$i]->userId == $message['data']['to_user']) {
-                                    $sendData = array('type' => 'newMessage', 'data' => $message['data']);
-                                    $this->connections[$i]->send(json_encode($sendData));
-                                }
-                            }
+                            $this->newMessage($from, $message['data']);
+                            break;
+                        case 'checkUsersStatus':
+                            $this->checkUsersStatus($from, $message['data']);
                             break;
                     }
+                }
+
+                public function init($from, $data)
+                {
+                    $from->userId = $data['userId'];
+                    $sendData = array('type' => 'userConnected', 'data' => array('id' => $data['userId']));
+                    $jsonData = json_encode($sendData);
+                    foreach($this->connections as $connection)
+                    {
+                        if ($connection != $from)
+                        {
+                            $connection->send($jsonData);
+                        }
+                    }
+                }
+
+                public function newMessage($from, $message)
+                {
+                    for ($i = 0; $i < count($this->connections); $i ++) {
+                        if ($this->connections[$i]->userId == $message['message']['to_user']) {
+                            $sendData = array('type' => 'newMessage', 'data' => $message);
+                            $this->connections[$i]->send(json_encode($sendData));
+                        }
+                    }
+                }
+
+                public function checkUsersStatus($from, $data)
+                {
+                    $status = array();
+                    for ($i = 0; $i < count($data); $i ++)
+                    {
+                        $connected = false;
+                        foreach($this->connections as $connection) {
+                            if ($connection->userId == $data[$i]) {
+                                $connected = true;
+                                break;
+                            }
+                        }
+                        var_dump($data[$i]);
+                        $status[$data[$i]] = $connected;
+                    }
+                    $from->send(json_encode(array('type' => 'connectionStatus', 'data' => $status)));
                 }
 
                 public function onClose(ConnectionInterface $conn)
@@ -65,6 +105,12 @@ $server = IoServer::factory(
                             break;
                         }
                     }
+                    $sendData = array('type' => 'userDisconnected', 'data' => array('id' => $conn->userId));
+                    $jsonData = json_encode($sendData);
+                    foreach($this->connections as $connection)
+                    {
+                        $connection->send($jsonData);
+                    }
                 }
 
                 public function onError(ConnectionInterface $conn, \Exception $e)
@@ -76,5 +122,7 @@ $server = IoServer::factory(
     ),
     $port
 );
+
 $server->run();
+var_dump("hello");
 ?>

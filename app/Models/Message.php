@@ -25,6 +25,18 @@ class Message
         return $messages;
     }
 
+    public static function getUnreadCounts($to, $from = '')
+    {
+        $query = 'select count(*) unreadCount from messages where to_user=:to and is_read=0';
+        $cond = ['to' => $to];
+        if ($from != '')
+        {
+            $query .= ' from=:from';
+            $cond['from_user'] = $from;
+        }
+        return DB::get()->fetchRow($query, $cond);
+    }
+
     public static function save($message)
     {
         $id = DB::get()->insert('messages', $message);

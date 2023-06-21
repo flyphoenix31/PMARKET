@@ -14,7 +14,8 @@ class ChatController
     // Homepage action
     public function index(RouteCollection $routes)
     {
-        $users = Chat::referedUsers(Auth::get()['id']);
+        // $users = Chat::referedUsers(Auth::get()['id']);
+        $users = Chat::getContacts(Auth::get()['id']);
         $contacts = Chat::contacts(Auth::get()['id']);
         // $groupdata = Chat::groupdata(Auth::get()['id']);
         $AttachedFiles = Chat::attachedFiles(Auth::get()['id']);
@@ -35,6 +36,7 @@ class ChatController
         Message::makeRead($user_id, $my_id);
         // Get all message from selected user
         $messages = Message::getWithUser($my_id, $user_id);
+        Message::makeRead($user_id, $my_id);
         // Get Receiver user Detail
         $chatUser = User::find($user_id);
         echo json_encode(array(
@@ -82,7 +84,24 @@ class ChatController
         $message = Message::save($message);
         echo json_encode(array(
             'status' => 0,
-            'message' => $message
+            'message' => $message,
+        ));
+    }
+
+    public function setRead(RouteCollection $routes)
+    {
+        Message::makeRead($_POST['from'], Auth::get()['id']);
+        echo json_encode(array(
+            'status' => 0
+        ));
+    }
+
+    public function getUnreadCounts(RouteCollection $routes)
+    {
+        $row = Message::getUnreadCounts(Auth::get()['id'], isset($message['from'])?$message['from']:'');
+        echo json_encode(array(
+            'status' => 0,
+            'unread' => $row['unreadCount']
         ));
     }
 

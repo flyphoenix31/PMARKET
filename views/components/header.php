@@ -1,3 +1,6 @@
+<?php
+use App\Middleware\Auth;
+?>
 <nav class="navbar header-navbar pcoded-header">
     <div class="navbar-wrapper">
         <div class="navbar-logo">
@@ -50,7 +53,7 @@
                                         <img class="img-radius" src="/assets/images/avatar-4.jpg" alt="Generic placeholder image">
                                     </div>
                                     <div class="flex-grow-1">
-                                        <h5 class="notification-user">John Doe</h5>
+                                        <h5 class="notification-user"><?= Auth::get()['name'] ?></h5>
                                         <p class="notification-msg">Lorem ipsum dolor sit amet, consectetuer elit.</p>
                                         <span class="notification-time">30 minutes ago</span>
                                     </div>
@@ -95,10 +98,9 @@
 
                     <div class="dropdown-primary dropdown">
                         <div class="dropdown-toggle" data-bs-toggle="dropdown">
-                            <img src="/assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+                            <img src="/upload/avatar/<?= Auth::get()['id'] ?>" class="img-radius" alt="User-Profile-Image">
                             <span>
-                                <?php //echo ($_SESSION["username"]) ? $_SESSION["username"] : "John Doe"; ?>
-                                <?php echo (array_key_exists('username', $_SESSION)) ? $_SESSION["username"] : "John Doe"; ?>                               
+                                <?= Auth::get()['name'] ?>
                             </span>
                             <i class="feather icon-chevron-down"></i>
                         </div>

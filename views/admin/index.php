@@ -35,12 +35,14 @@ use App\Middleware\Auth;
     <!-- Style.css -->
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/widget.css">
-    <script type="text/javascript" src="/bower_components/axios/js/axios.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/assets/pages/notification/notification.css">
+    <link rel="stylesheet" type="text/css" href="/bower_components/animate.css/css/animate.css">
 </head>
 
 <body>
     <script>
         let userId = <?= Auth::get()['id'] ?>;
+        let user = <?= json_encode(Auth::get()) ?>;
     </script>
     <!-- [ Pre-loader ] start -->
     <div class="loader-bg">
@@ -332,6 +334,7 @@ use App\Middleware\Auth;
         </div>
     </div>
     <!-- Warning Section Ends -->
+    <script type="text/javascript" src="/bower_components/axios/js/axios.min.js"></script>
     <!-- Required Jquery -->
     <script type="text/javascript" src="/bower_components/jquery/js/jquery.min.js"></script>
     <script type="text/javascript" src="/bower_components/jquery-ui/js/jquery-ui.min.js"></script>
@@ -356,7 +359,10 @@ use App\Middleware\Auth;
     <script src="/assets/js/pcoded.min.js"></script>
     <script src="/assets/js/vertical/vertical-layout.min.js"></script>
     <script type="text/javascript" src="/assets/pages/dashboard/custom-dashboard.min.js"></script>
+    <script type="text/javascript" src="/assets/js/bootstrap-growl.min.js"></script>
     <script type="text/javascript" src="/assets/js/script.min.js"></script>
+
+    <script type="text/javascript" src="/js/common/notification.js"></script>
     <script type="text/javascript" src="/js/common/chatbar.js"></script>
     <script type="text/javascript" src="/js/common/socket.js"></script>
 </body>

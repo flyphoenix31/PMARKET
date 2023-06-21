@@ -136,7 +136,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   <link rel="stylesheet" href="./css/main.css">
   <link rel="shortcut icon" href="./img/favicon-16x16.png" type="image/x-icon">
-  <script defer src="./js/script.js"></script>
+  <!-- <script defer src="./js/script.js"></script> -->
 </head>
 
 <body>
@@ -149,29 +149,62 @@
           <!-- form starts here -->
           <form action="/register" method="post" id="registerForm" novalidate>
             <div class="mb-3">
-              <label for="name" class="form-label">Username</label>
+              <label for="name" class="form-label">Name</label>
               <input type="text" class="form-control" name="name" id="name" value="">
-              <small class="text-danger"></small>
+              <small class="text-danger" id="name_error"></small>
+            </div>
+            <div class="mb-3">
+              <label for="username" class="form-label">Username</label>
+              <input type="text" class="form-control" name="username" id="username" value="">
+              <small class="text-danger" id="username_error"></small>
             </div>
             <div class="mb-3">
               <label for="email" class="form-label">Email Address</label>
               <input type="email" class="form-control" name="email" id="email" value="">
-              <small class="text-danger"></small>
+              <small class="text-danger" id="email_error"></small>
             </div>
             <div class="mb-3">
               <label for="phone" class="form-label">Phone</label>
               <input type="text" class="form-control" name="phone" id="phone" value="">
-              <small class="text-danger"></small>
+              <small class="text-danger" id="phone_error"></small>
             </div>
-            <div class="mb-2">
-              <label for="password" class="form-label">Password</label>
-              <input type="password" class="form-control" name="password" id="password" value="">
-              <small class="text-danger"></small>
+            <div class="row mb-3">
+              <div class="col-6">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" name="password" id="password" value="">
+                <small class="text-danger" id="password_error"></small>
+              </div>
+              <div class="col-6">
+                <label for="phone" class="form-label">Gender</label>
+                <select name="gender" id="gender" class="form-control fill">
+                  <option value="">-- Select Gender --</option>
+                  <?php
+                  foreach ($params['genders'] as $gender) {
+                    echo "<option value=\"" . $gender['id'] . "\">" . $gender['name'] . "</option>";
+                  }
+                  ?>
+                </select>
+                <small class="text-danger" id="gender_error"></small>
+              </div>
             </div>
-            <div class="mb-2">
-              <label for="password" class="form-label">Confirm Password</label>
-              <input type="password" class="form-control" name="password" id="password" value="">
-              <small class="text-danger"></small>
+            <div class="row mb-3">
+              <div class="col-6">
+                <label for="confirm_password" class="form-label">Confirm Password</label>
+                <input type="confirm_password" class="form-control" name="confirm_password" id="confirm_password" value="">
+                <small class="text-danger" id="confirm_password_error"></small>
+              </div>
+              <div class="col-6">
+                <label for="phone" class="form-label">Role</label>
+                <select name="role" id="role" class="form-control fill">
+                  <option value="">-- Select Role --</option>
+                  <?php
+                  foreach ($params['roles'] as $role) {
+                    echo "<option value=\"" . $role['id'] . "\">" . $role['name'] . "</option>";
+                  }
+                  ?>
+                </select>
+                <small class="text-danger" id="role_error"></small>
+              </div>
             </div>
             <div class="mb-3 form-check">
               <input type="checkbox" class="form-check-input" id="togglePassword">
@@ -187,7 +220,9 @@
       </div>
     </div>
   </div>
-  <script type="text/javascript" src="/assets/js/register/index.js"></script>
+  <script type="text/javascript" src="/bower_components/jquery/js/jquery.min.js"></script>
+  <script type="text/javascript" src="/bower_components/axios/js/axios.min.js"></script>
+  <script type="text/javascript" src="/js/register/index.js"></script>
 </body>
 
 </html>

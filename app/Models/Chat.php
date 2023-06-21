@@ -29,6 +29,13 @@ class Chat
         return $users;
     }
 
+    public static function getContacts($userId)
+    {
+        $users = DB::get()->fetchRowMany("select *, (select id from messages where users.id=messages.from_user or users.id=messages.to_user order by messages.id desc limit 1) messageId from users where users.id != :userId order by messageId desc", ['userId' => $userId]);
+        if (!$users) return [];
+        return $users;
+    }
+
     public static function contacts($userId)
     {
         $collection = DB::get()->fetchRowMany("SELECT * from users where id != :userId order by name", ['userId' => $userId]);
