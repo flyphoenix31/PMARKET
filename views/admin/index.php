@@ -37,6 +37,9 @@ use App\Middleware\Auth;
     <link rel="stylesheet" type="text/css" href="/assets/css/widget.css">
     <link rel="stylesheet" type="text/css" href="/assets/pages/notification/notification.css">
     <link rel="stylesheet" type="text/css" href="/bower_components/animate.css/css/animate.css">
+
+
+    <link rel="stylesheet" type="text/css" href="/css/common/chatbar.css">
 </head>
 
 <body>

@@ -98,10 +98,10 @@ class ChatController
 
     public function getUnreadCounts(RouteCollection $routes)
     {
-        $row = Message::getUnreadCounts(Auth::get()['id'], isset($message['from'])?$message['from']:'');
+        $data = Message::getUnreadCounts(Auth::get()['id'], isset($message['from'])?$message['from']:'');
         echo json_encode(array(
             'status' => 0,
-            'unread' => $row['unreadCount']
+            'data' => $data
         ));
     }
 

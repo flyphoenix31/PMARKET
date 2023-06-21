@@ -30,7 +30,10 @@ var addNewMessageElement = function (message) {
     setTimeout(() => mainFriendChat.slimscroll({ scrollTo: 10000000000 }), 100);
 }
 var chatUsers = [];
-var unreadMessageCount = 0;
+var unreadData = {
+    totalUnread: 0,
+    unreads: []
+}
 function currentChatUser() {
     if ($('.showChat_inner').css('display') == 'block') {
         return $('#selectedChatUserID').val();
@@ -41,22 +44,34 @@ function getChatUnreadCounts() {
     axios.post('/chat/getUnreadCounts').then(({ data: response }) => {
         console.log(response);
         if (response.status != 0) throw 'error';
-        unreadMessageCount = Number(response.unread);
-        updateUnreadCount();
+        unreadData = response.data;
+        updateUnread();
     }).catch(err => {
         console.error(err);
     })
 }
 
-function updateUnreadCount() {
+function updateUnread() {
+    console.log(unreadData);
     const badge = $('.displayChatbox .badge');
-    badge.html(unreadMessageCount);
+    badge.html(unreadData.totalUnread);
     console.log(badge);
-    if (unreadMessageCount) {
+    if (Number(unreadData.totalUnread)) {
         badge.removeClass('d-none');
     } else {
         badge.addClass('d-none');
     }
+
+    $('.userlist-box .badge').addClass('d-none');
+    unreadData.unreads.forEach(item => {
+        const userItemBox = $(`.userlist-box[data-id="${item.from_user}"] .badge`);
+        userItemBox.html(item.unreadCount);
+        if (Number(item.unreadCount)) {
+            userItemBox.removeClass('d-none');
+        } else {
+            userItemBox.addClass('d-none');
+        }
+    })
 }
 
 function updateUserStatus(userId, connectedStatus = false) {
@@ -121,17 +136,18 @@ $(document).ready(function () {
             getUsersStatus();
             response.users.forEach(user => {
                 html += `<div class="media userlist-box waves-effect waves-light" data-id="${user.id}" data-status="online" data-username="${user.name}">
-                <a class="media-left" href="#!">
-                    <img class="media-object img-radius img-radius" src="/upload/avatar/${user.id}" alt="Generic placeholder image ">
-                    <div class="live-status bg-warning"></div>
-                </a>
-                <div class="media-body">
-                    <div class="chat-header">${user.name}</div>
-                </div>
-            </div>`
+                <span class="badge bg-c-green">0</span>
+                    <div class="media-left" href="#!">
+                        <img class="media-object img-radius img-radius" src="/upload/avatar/${user.id}" alt="Generic placeholder image ">
+                        <div class="live-status bg-warning"></div>
+                    </div>
+                    <div class="media-body">
+                        <div class="chat-header">${user.name}</div>
+                    </div>
+                </div>`
             })
-
             mainFriendList.html(html);
+            updateUnread();
 
             var my_val = $('.pcoded').attr('vertical-placement');
             if (my_val == 'right') {
