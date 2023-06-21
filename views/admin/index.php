@@ -46,6 +46,7 @@ use App\Middleware\Auth;
     <script>
         let userId = <?= Auth::get()['id'] ?>;
         let user = <?= json_encode(Auth::get()) ?>;
+        let socketURL = '<?= SOCKET_SERVER ?>';
     </script>
     <!-- [ Pre-loader ] start -->
     <div class="loader-bg">

@@ -1,6 +1,6 @@
 var sendSocketMessage = null;
 $(document).ready(function() {
-    const socket = new WebSocket('ws://localhost:10725');
+    const socket = new WebSocket(socketURL);
     socket.addEventListener('message', function (event) {
         // console.log('Message from server:', event.data);
         const message = JSON.parse(event.data);

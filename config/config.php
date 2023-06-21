@@ -1,6 +1,7 @@
 <?php
 define('SITE_NAME', 'pmarket.com');
 define("WEB_TITLE", "PMarket");
+define('BASE_URL', 'http://127.0.0.1');
 define('SOCKET_SERVER', 'ws://localhost:10725');
 
 define('APP_ROOT', dirname(dirname(__FILE__)));
