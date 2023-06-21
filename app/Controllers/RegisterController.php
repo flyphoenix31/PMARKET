@@ -44,40 +44,8 @@ class AuthController
         return die();
     }
 
-    public function registerPage(RouteCollection $routes)
-    {
-        View::render('register');
-    }
-
     public function register(RouteCollection $routes)
     {
-        if (!isset($_POST['name']) || $_POST['name'] == '') {
-            echo json_encode(array('status' => 1, 'error' => array('name' => 'Please input your name.')));
-            return;
-        }
-        if (!isset($_POST['email']) || $_POST['email'] == '') {
-            echo json_encode(array('status' => 1, 'error' => array('email' => 'Please input your email.')));
-            return;
-        }
-        if (!isset($_POST['password']) || $_POST['password'] == '') {
-            echo json_encode(array('status' => 1, 'error' => array('password' => 'Please input your password.')));
-            return;
-        }
-        if (!isset($_POST['confirm_password']) || $_POST['confirm_password'] == '' || $_POST['confirm_password'] != $_POST['password']) {
-            echo json_encode(array('status' => 1, 'error' => array('confirm_password' => 'Please confirm your password.')));
-            return;
-        }
-
-        $newUser = array(
-            'name' => $_POST['name'],
-            'email' => $_POST['email'],
-            'password' => $_POST['password']
-        );
-
-        $user = User::create($newUser);
-        echo json_encode(array(
-            'status' => 0,
-            'user' => $user
-        ));
+        View::render('login');
     }
 }

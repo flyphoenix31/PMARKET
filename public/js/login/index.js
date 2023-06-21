@@ -1,4 +1,12 @@
 $(document).ready(function () {
+    $("#togglePassword").on('click', function() {
+        var user_password = $("#password");
+        if(user_password.attr('type') === 'password')
+            user_password.attr('type', 'text');
+        else
+            user_password.attr('type', 'password');
+    })
+
     $("#loginForm").submit(function (e) {
         e.preventDefault();
         const params = {

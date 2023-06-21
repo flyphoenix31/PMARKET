@@ -17,6 +17,12 @@ class User
 
     public static function find($id)
     {
-        return  DB::get()->fetchRow('Select * from users where id=:id', ['id' => $id]);
+        return DB::get()->fetchRow('Select * from users where id=:id', ['id' => $id]);
+    }
+
+    public static function create($user)
+    {
+        $id = DB::get()->insert('users', $user);
+        return User::find($id);
     }
 }

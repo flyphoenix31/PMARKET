@@ -19,3 +19,8 @@ $routes->add('chat/lastMessages', new Route(constant('URL_SUBFOLDER') . '/chat/l
 
 $routes->add('homepage', new Route(constant('URL_SUBFOLDER') . '/', array('controller' => 'PageController', 'method'=>'indexAction', 'middleware' => array(array('class'=>'Auth', 'method'=>'private'))), array(), array(), '', array(), array('GET')));
 $routes->add('product', new Route(constant('URL_SUBFOLDER') . '/product/{id}', array('controller' => 'ProductController', 'method'=>'showAction'), array('id' => '[0-9]+')));
+
+//register route
+// $routes->add('registerPage', new Route(constant('URL_SUBFOLDER') . '/register', array('controller' => 'ProductController', 'method'=>'showAction'), array('id' => '[0-9]+')));
+$routes->add('registerPage', new Route(constant('URL_SUBFOLDER') . '/register', array('controller' => 'AuthController', 'method'=>'registerPage', 'middleware' => array(array('class'=>'Auth', 'method'=>'public'))), array(), array(), '', array(), array('GET')));
+$routes->add('register', new Route(constant('URL_SUBFOLDER') . '/register', array('controller' => 'AuthController', 'method'=>'register', 'middleware' => array(array('class'=>'Auth', 'method'=>'public'))), array(), array(), '', array(), array('POST')));
